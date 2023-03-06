@@ -26,6 +26,3 @@ Statistics.propTypes = {
 };
 
 export default Statistics;
-{
-  /* <Statistics good={} neutral={} bad={} total={} positivePercentage={}></Statistics> */
-}
