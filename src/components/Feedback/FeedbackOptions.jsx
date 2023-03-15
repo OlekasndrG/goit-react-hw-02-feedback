@@ -1,18 +1,21 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { nanoid } from 'nanoid';
 class FeedbackOptions extends Component {
   render() {
     return (
       <div className="Counter__controls">
-        <button type="button" onClick={this.props.onLeaveFeedback}>
-          good
-        </button>
-        <button type="button" onClick={this.props.onLeaveFeedback}>
-          neutral
-        </button>
-        <button type="button" onClick={this.props.onLeaveFeedback}>
-          bad
-        </button>
+        {this.props.options.map(button => {
+          return (
+            <button
+              type="button"
+              key={nanoid()}
+              onClick={this.props.onLeaveFeedback}
+            >
+              {button}
+            </button>
+          );
+        })}
       </div>
     );
   }
@@ -20,7 +23,7 @@ class FeedbackOptions extends Component {
 
 FeedbackOptions.propTypes = {
   onLeaveFeedback: PropTypes.func.isRequired,
-  options: PropTypes.any,
+  options: PropTypes.arrayOf(PropTypes.string.isRequired),
 };
 
 export default FeedbackOptions;

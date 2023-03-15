@@ -33,8 +33,9 @@ class FeedbackCounter extends Component {
     });
   };
   countTotalFeedback = () => {
-    const total = this.state.good + this.state.neutral + this.state.bad;
-    return total;
+    const newTotal = Object.values(this.state).reduce((acc, el) => acc + el, 0);
+    // const total = this.state.good + this.state.neutral + this.state.bad;
+    return newTotal;
   };
 
   countPositiveFeedbackPercentage = () => {
@@ -47,13 +48,13 @@ class FeedbackCounter extends Component {
   render() {
     return (
       <MainContainer>
-        <Section title="Please leave feedback">
+        <Section title={'Please leave feedback'}>
           <FeedbackOptions
             onLeaveFeedback={this.handleIncrement}
-            options={this.state}
+            options={Object.keys(this.state)}
           />
         </Section>
-        <Section>
+        <Section title={'Statistics'}>
           {this.countTotalFeedback() > 0 ? (
             <Statistics
               good={this.state.good}
